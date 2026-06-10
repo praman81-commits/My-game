@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://4qkdm7x4y720"]
+
+[ext_resource type="Script" uid="uid://ohtuqa7xbkvw" path="res://player.gd" id="1_4flbx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sh265"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_4flbx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sh265")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CapsuleShape2D_4flbx")
