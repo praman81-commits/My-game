@@ -15,6 +15,10 @@ run/main_scene="uid://nin776p7a6ol"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/AS2P/plugin.cfg")
+
 [input]
 
 ui_filedialog_show_hidden={

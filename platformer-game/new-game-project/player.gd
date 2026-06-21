@@ -6,19 +6,53 @@ extends CharacterBody2D
 @export var acceleration: float = 15.0
 @export var jump = 1
 
-enum state {IDLE,RUNNING,JUMPUP,JUMPDOWN,HURT}
+enum state {IDLE,RUNNING,JUMPUP,JUMPDOWN,DEAD,JUMPATTCK,JUMPTHROW,SLIDE,THROW}
 
 var anim_state = state.IDLE
 
 @onready var animator = $AnimatedSprite2D
 @onready var animation_player = $AnimationPlayer
 
-func _physics_process(delta: float) -> void:
+# Get the gravity from the project setting to be synced with RegidBody  nodes.
+var gravity = ProjectSettings.get_setting("physics/2d/default_graviy")
+
+func update_state():
+	if anim_state == state.DEAD:
+		return
+	if is_on_floor():
+		if velocity == Vector2.ZERO:
+			anim_state = state.IDLE
+		elif velocity.x != 0:
+			anim_state = state.RUNNING
+	else:
+		if velocity.y < 0:
+			anim_state = state.JUMPUP
+		else:
+			anim_state = state.JUMPDOWN
+			
+func update_animation(direction):
+	if direction > 0:
+		animator.flip_h = false
+	elif direction < 0:
+		animator.flip_h = true
+	match anim_state:
+		state.IDLE:
+			animation_player.play("idle")
+		state.RUNNING:
+			animation_player.play("run")
+		state.JUMPUP:
+			animation_player.play("jumpup")
+		state.JUMPDOWN:
+			animation_player.play("jumpdown")
+		state.
+	
+	
+func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
+		velocity.y += gravity * delta	
+		
+		# Handle Jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
 
