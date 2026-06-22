@@ -367,11 +367,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_phduw"]
-size = Vector2(11, 26)
+size = Vector2(33, 30)
 
 [sub_resource type="Animation" id="Animation_7gga0"]
 length = 2.0
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -613,12 +612,13 @@ acceleration = null
 jump = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(5, -1)
 scale = Vector2(0.0517242, 0.0517242)
 sprite_frames = SubResource("SpriteFrames_sh265")
-animation = &"dead"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0)
+position = Vector2(4.5, -1)
 shape = SubResource("RectangleShape2D_phduw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -626,5 +626,6 @@ root_node = NodePath("../AnimatedSprite2D")
 libraries = {
 &"": SubResource("AnimationLibrary_vxixj")
 }
+autoplay = "idle"
 script = ExtResource("82_hrkui")
 metadata/dead = false
