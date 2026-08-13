@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://2k6gbbsrtsnj"]
+
+[ext_resource type="Texture2D" uid="uid://c8r7eqprqexp4" path="res://Tilemap/raspberry.png" id="1_gf172"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dl81w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gf172")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5rgpn"]
+radius = 284.101
+
+[node name="Area2D" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, 1)
+scale = Vector2(0.218476, 0.188963)
+sprite_frames = SubResource("SpriteFrames_dl81w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 1)
+scale = Vector2(0.218476, 0.188963)
+shape = SubResource("CircleShape2D_5rgpn")

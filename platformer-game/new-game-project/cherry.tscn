@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://ghk3k3l8td60"]
+
+[ext_resource type="Texture2D" uid="uid://brbu5ddqe08qv" path="res://Tilemap/cherry.png" id="1_8pvkm"]
+[ext_resource type="Script" uid="uid://bjyc2fepw0rmu" path="res://cherry.gd" id="1_ht0rm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ht0rm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8pvkm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pg3ag"]
+radius = 56.0001
+
+[node name="cherry" type="Area2D"]
+script = ExtResource("1_ht0rm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.18751, -0.750002)
+scale = Vector2(0.194643, 0.135714)
+sprite_frames = SubResource("SpriteFrames_ht0rm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 2.38419e-07)
+scale = Vector2(0.160714, 0.157143)
+shape = SubResource("CircleShape2D_pg3ag")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="child_entered_tree" from="CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]

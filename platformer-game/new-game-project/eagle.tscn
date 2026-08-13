@@ -1,0 +1,65 @@
+[gd_scene load_steps=12 format=3 uid="uid://d00r1fc6agk1i"]
+
+[ext_resource type="Texture2D" uid="uid://d2wjeom8jvbkg" path="res://Tiles/__Bandit02_Idle_000.png" id="1_axio0"]
+[ext_resource type="Texture2D" uid="uid://ocayvsfa4hrh" path="res://Tiles/__Bandit02_Walk_000.png" id="2_fbd01"]
+[ext_resource type="Texture2D" uid="uid://b246ifs8cffyy" path="res://Tiles/parallax_mountain_pack (3)/__Bandit02_Attack_000.png" id="3_76ec4"]
+[ext_resource type="Texture2D" uid="uid://beg7ns0fu2rvu" path="res://Tiles/__Bandit02_Walk_001.png" id="4_or3by"]
+[ext_resource type="Texture2D" uid="uid://s1fu2on8pfiv" path="res://Tiles/__Bandit02_Attack_001.png" id="5_4ojkr"]
+[ext_resource type="Texture2D" uid="uid://b11f8cjii5osv" path="res://Tiles/__Bandit02_Attack_003.png" id="6_1dcr0"]
+[ext_resource type="Texture2D" uid="uid://c68lllg4qe313" path="res://Tiles/__Bandit02_Attack_004.png" id="7_5wgo6"]
+[ext_resource type="Texture2D" uid="uid://de75ldadefdk8" path="res://Tiles/__Bandit02_Attack_005.png" id="8_gh4wl"]
+[ext_resource type="Texture2D" uid="uid://dn4eaiq0cmvpd" path="res://Tiles/__Bandit02_Attack_007.png" id="9_mf7gj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j4qgy"]
+radius = 104.561
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h800l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_axio0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fbd01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_76ec4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_or3by")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4ojkr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1dcr0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5wgo6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gh4wl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mf7gj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, 4)
+shape = SubResource("CircleShape2D_j4qgy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, 3)
+scale = Vector2(0.158615, 0.167179)
+sprite_frames = SubResource("SpriteFrames_h800l")
+frame = 2
+frame_progress = 0.144374
+
+[node name="Timer" type="Timer" parent="AnimatedSprite2D"]
+autostart = true

@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvvnagrwiktoq"]
+
+[ext_resource type="Script" uid="uid://bqdhqkbpn25jn" path="res://enemy.gd" id="1_doop2"]
+[ext_resource type="Texture2D" uid="uid://s1fu2on8pfiv" path="res://Tiles/__Bandit02_Attack_001.png" id="6_ar8e5"]
+[ext_resource type="Texture2D" uid="uid://b11f8cjii5osv" path="res://Tiles/__Bandit02_Attack_003.png" id="7_doop2"]
+[ext_resource type="Texture2D" uid="uid://c68lllg4qe313" path="res://Tiles/__Bandit02_Attack_004.png" id="8_5hcft"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_epc7x"]
+radius = 17.1172
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o7rgc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_5hcft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ar8e5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_doop2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5hcft")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="enemy" type="Area2D" groups=["hurt"]]
+z_index = 1
+script = ExtResource("1_doop2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_epc7x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 2)
+scale = Vector2(0.0611916, 0.0740917)
+sprite_frames = SubResource("SpriteFrames_o7rgc")
+autoplay = "default"
+frame = 3
+frame_progress = 0.388184
+
+[node name="Timer" type="Timer" parent="AnimatedSprite2D"]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="AnimatedSprite2D/Timer" to="." method="_on_timer_timeout"]

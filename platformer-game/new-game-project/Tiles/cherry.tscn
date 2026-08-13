@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cq82mwfljalmd"]
+
+[ext_resource type="Texture2D" uid="uid://brbu5ddqe08qv" path="res://Tilemap/cherry.png" id="1_cxvjp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_apw3r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cxvjp")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eclno"]
+radius = 9.43398
+
+[node name="cherry" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-6, -14.4913)
+scale = Vector2(0, 0.0137965)
+sprite_frames = SubResource("SpriteFrames_apw3r")
+animation = &"new_animation"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_eclno")
