@@ -15,6 +15,7 @@ var health: int = 3
 # --- NODE REFERENCES ---
 @onready var animator = $AnimatedSprite2D
 @onready var animation_player = $AnimationPlayer
+@onready var health_bar = $"../CanvasLayer/ProgressBar2"
 
 # Get gravity setting
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -72,7 +73,7 @@ func update_animation(direction):
 		State.RUNNING:
 			animation_player.play("run")
 		State.JUMP:
-			animation_player.play("jumpup")
+			animation_player.play("jump")
 		State.ATTACK:
 			animation_player.play("jump attack")
 
@@ -94,6 +95,10 @@ func take_damage(amount: int = 1) -> void:
 	
 	velocity.y = -150
 	
+	# Update the progress bar UI
+	if health_bar:
+		health_bar.value = health
+		
 	if health <= 0:
 		print("Player Died!")
-		get_tree().reload_current_scene()
+		get_tree().reload_current_scene()            
