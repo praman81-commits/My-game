@@ -1,23 +1,55 @@
-extends Area2D
+extends area2d
+
+# --- CONFIGURATION ---
+const SPEED = 80.0
+const ATTACK_RANGE = 35.0 # Distance to stop and attack
+
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var is_attacking: bool = false
+
+@onready var animator = $AnimatedSprite2D # Or $AnimationPlayer if using that
+@onready var player = get_parent().get_node_or_null("player") # Make sure path matches scene tree
 
 
-@export var flip_time = 1
-@export var direction: int = -1
+func _physics_process(delta):
+	# Apply gravity
+	if not is_on_floor():
+		velocity.y += gravity * delta
 
-func _ready():
-	pass
+	if player and not is_attacking:
+		# Calculate distance to player
+		var distance_to_player = global_position.distance_to(player.global_position)
+		var direction = (player.global_position.x - global_position.x)
 
-func _process(delta):
-	translate(Vector2.RIGHT * direction)
-	$AnimatedSprite2D.flip_h = direction < 0
+		# Flip sprite to face player
+		if direction != 0:
+			animator.flip_h = direction < 0
 
-func _on_timer_timeout() -> void:
-	direction *= -1
-	$Timer.wait_time = flip_time
+		# Check if within attack range
+		if distance_to_player <= ATTACK_RANGE:
+			velocity.x = 0
+			attack()
+		else:
+			# Walk toward player
+			velocity.x = sign(direction) * SPEED
+			animator.play("walk") # Replace "walk" with your enemy walk animation name
+	else:
+		velocity.x = 0
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.name == "player":
-		print("Player hit!")
-		direction *= -1 # Turns the enemy around immediately!
-		if body.has_method("take_damage"):
-			body.take_damage(1)
+	move_and_slide()
+
+
+func attack():
+	is_attacking = true
+	velocity.x = 0
+	animator.play("attack") # Replace "attack" with your enemy attack animation name
+
+	# Trigger damage call to player
+	if player and player.has_method("take_damage"):
+		player.take_damage(1)
+
+
+# Connect this from your AnimatedSprite2D / AnimationPlayer signal: animation_finished
+func _on_animated_sprite_2d_animation_finished():
+	if animator.animation == "attack":
+		is_attacking = false # Allow movement again after attack finishes
