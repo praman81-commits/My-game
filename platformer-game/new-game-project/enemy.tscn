@@ -1,9 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvvnagrwiktoq"]
+[gd_scene load_steps=14 format=3 uid="uid://dvvnagrwiktoq"]
 
 [ext_resource type="Script" uid="uid://bqdhqkbpn25jn" path="res://enemy.gd" id="1_doop2"]
+[ext_resource type="Texture2D" uid="uid://d2wjeom8jvbkg" path="res://Tiles/__Bandit02_Idle_000.png" id="2_pwjut"]
+[ext_resource type="Texture2D" uid="uid://c35e4qdy4purv" path="res://Tiles/__Bandit02_Idle_001.png" id="3_n0g06"]
+[ext_resource type="Texture2D" uid="uid://beg7ns0fu2rvu" path="res://Tiles/__Bandit02_Walk_001.png" id="4_ar8e5"]
+[ext_resource type="Texture2D" uid="uid://dd4npjs25nbq6" path="res://Tiles/__Bandit02_Walk_002.png" id="5_doop2"]
+[ext_resource type="Texture2D" uid="uid://d3rkihije8ax7" path="res://Tiles/__Bandit02_Walk_004.png" id="6_5hcft"]
 [ext_resource type="Texture2D" uid="uid://s1fu2on8pfiv" path="res://Tiles/__Bandit02_Attack_001.png" id="6_ar8e5"]
 [ext_resource type="Texture2D" uid="uid://b11f8cjii5osv" path="res://Tiles/__Bandit02_Attack_003.png" id="7_doop2"]
 [ext_resource type="Texture2D" uid="uid://c68lllg4qe313" path="res://Tiles/__Bandit02_Attack_004.png" id="8_5hcft"]
+[ext_resource type="Texture2D" uid="uid://dn4eaiq0cmvpd" path="res://Tiles/__Bandit02_Attack_007.png" id="10_nnovl"]
+[ext_resource type="Texture2D" uid="uid://de75ldadefdk8" path="res://Tiles/__Bandit02_Attack_005.png" id="11_jmwgi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_epc7x"]
 radius = 17.1172
@@ -12,7 +19,19 @@ radius = 17.1172
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_5hcft")
+"texture": ExtResource("2_pwjut")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_n0g06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ar8e5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_doop2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5hcft")
 }, {
 "duration": 1.0,
 "texture": ExtResource("6_ar8e5")
@@ -22,13 +41,19 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("8_5hcft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_nnovl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jmwgi")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="enemy" type="Area2D" groups=["hurt"]]
+[node name="enemy" type="CharacterBody2D" groups=["hurt"]]
 z_index = 1
 script = ExtResource("1_doop2")
 
@@ -40,11 +65,8 @@ position = Vector2(-1, 2)
 scale = Vector2(0.0611916, 0.0740917)
 sprite_frames = SubResource("SpriteFrames_o7rgc")
 autoplay = "default"
-frame = 3
-frame_progress = 0.388184
+frame_progress = 0.586548
 
 [node name="Timer" type="Timer" parent="AnimatedSprite2D"]
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="AnimatedSprite2D/Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

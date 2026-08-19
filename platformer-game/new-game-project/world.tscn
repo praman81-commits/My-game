@@ -905,8 +905,8 @@ tile_set = SubResource("TileSet_70uel")
 
 [node name="Sprite2D" type="Sprite2D" parent="TileMapLayer2/ParallaxBackground/Parallax2D"]
 texture_filter = 1
-position = Vector2(2461, 774)
-scale = Vector2(-16.6541, 10.7547)
+position = Vector2(3092, 473)
+scale = Vector2(-11.877, 9.6719)
 texture = ExtResource("2_k3n1d")
 offset = Vector2(175.833, -23.2102)
 
@@ -964,12 +964,6 @@ position = Vector2(1552, 137)
 [node name="cherry6" parent="." instance=ExtResource("18_ikiii")]
 position = Vector2(322, 140)
 
-[node name="cherry7" parent="cherry6" instance=ExtResource("18_ikiii")]
-position = Vector2(259, -1)
-
-[node name="cherry16" parent="cherry6/cherry7" instance=ExtResource("18_ikiii")]
-position = Vector2(1589, -59)
-
 [node name="cherry" parent="." instance=ExtResource("18_ikiii")]
 position = Vector2(682, 142)
 
@@ -985,9 +979,6 @@ position = Vector2(1012, 145)
 [node name="cherry11" parent="." instance=ExtResource("18_ikiii")]
 position = Vector2(1494, 140)
 
-[node name="enemy" parent="cherry11" instance=ExtResource("19_cbp6q")]
-position = Vector2(-1331, -1)
-
 [node name="cherry12" parent="." instance=ExtResource("18_ikiii")]
 position = Vector2(1306, 99)
 
@@ -997,29 +988,23 @@ position = Vector2(1786, 146)
 [node name="cherry14" parent="." instance=ExtResource("18_ikiii")]
 position = Vector2(1818, 143)
 
-[node name="enemy2" parent="." instance=ExtResource("19_cbp6q")]
-position = Vector2(537, 158)
-
 [node name="cherry15" parent="." instance=ExtResource("18_ikiii")]
 position = Vector2(1973, 109)
 
 [node name="cherry7" parent="." instance=ExtResource("18_ikiii")]
 position = Vector2(2269, 133)
 
-[node name="enemy" parent="." instance=ExtResource("19_cbp6q")]
-position = Vector2(1814, 156)
-
-[node name="enemy3" parent="." instance=ExtResource("19_cbp6q")]
-position = Vector2(1574, 160)
-
-[node name="enemy4" parent="." instance=ExtResource("19_cbp6q")]
-position = Vector2(933, 147)
-
-[node name="enemy5" parent="." instance=ExtResource("19_cbp6q")]
-position = Vector2(2500, 152)
-
 [node name="cherry2" parent="." instance=ExtResource("18_ikiii")]
 position = Vector2(1831, 150)
 
 [node name="cherry3" parent="." instance=ExtResource("18_ikiii")]
 position = Vector2(2022, 122)
+
+[node name="cherry16" parent="." instance=ExtResource("18_ikiii")]
+position = Vector2(581, 139)
+
+[node name="cherry17" parent="." instance=ExtResource("18_ikiii")]
+position = Vector2(2170, 80)
+
+[node name="enemy" parent="." instance=ExtResource("19_cbp6q")]
+position = Vector2(195, 139)
