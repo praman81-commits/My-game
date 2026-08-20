@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dvvnagrwiktoq"]
+[gd_scene load_steps=15 format=3 uid="uid://dvvnagrwiktoq"]
 
 [ext_resource type="Script" uid="uid://bqdhqkbpn25jn" path="res://enemy.gd" id="1_doop2"]
 [ext_resource type="Texture2D" uid="uid://d2wjeom8jvbkg" path="res://Tiles/__Bandit02_Idle_000.png" id="2_pwjut"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://de75ldadefdk8" path="res://Tiles/__Bandit02_Attack_005.png" id="11_jmwgi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_epc7x"]
-radius = 17.1172
+radius = 12.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o7rgc"]
 animations = [{
@@ -53,6 +53,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pwjut"]
+size = Vector2(12, 10)
+
 [node name="enemy" type="CharacterBody2D" groups=["hurt"]]
 z_index = 1
 script = ExtResource("1_doop2")
@@ -69,4 +72,13 @@ frame_progress = 0.586548
 
 [node name="Timer" type="Timer" parent="AnimatedSprite2D"]
 
+[node name="sword hit box" type="Area2D" parent="."]
+position = Vector2(-1.78814e-07, 2.38419e-07)
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sword hit box"]
+position = Vector2(13, 5)
+shape = SubResource("RectangleShape2D_pwjut")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="sword hit box" to="." method="_on_sword_hit_box_body_entered"]
